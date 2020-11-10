@@ -1,4 +1,5 @@
 package com.techreturners.exercise001;
+import java.lang.*;
 
 public class Exercise001 {
 
@@ -9,9 +10,38 @@ public class Exercise001 {
     // More examples in exercise001 test cases.
 
     // Good luck!
-
+    static final int INT_SIZE = 32; 
     public int singles(int [] arr){
-        // Add your code here!
-        return 0;
+        
+
+        int n = arr.length; 
+        int result [] = new int[n + 1]; 
+        int x, sum; 
+        // Iterate through every bit 
+        for (int i = 0; i < INT_SIZE; i++) { 
+            // Find sum of set bits at ith position in all 
+            // array elements 
+            sum = 0; 
+            x = (1 << i); 
+            for (int j = 0; j < n; j++) { 
+                if ((arr[j] & x) == 0) 
+                    sum++; 
+            } 
+            // The bits with sum not multiple of 3, are the 
+            // bits of element with single occurrence. 455e3w2
+            if ((sum % 3) != 0) 
+                result[i]=x; 
+        } 
+
+        int sumofsingles = result.stream(arr).sum();
+
+        return sumofsingles;
+    }
+
+    public static void main(String args[]) 
+    { 
+        int arr[] = { 12, 1, 12, 3, 12, 1, 1, 2, 3, 2, 2, 3, 7 }; 
+        
+        System.out.println("sum is" + singles(arr)); 
     }
 }
