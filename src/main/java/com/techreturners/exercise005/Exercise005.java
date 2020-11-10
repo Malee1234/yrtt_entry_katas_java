@@ -1,4 +1,6 @@
 package com.techreturners.exercise005;
+import java.lang.String;
+import java.util.Arrays;
 
 public class Exercise005 {
 
@@ -27,6 +29,38 @@ public class Exercise005 {
 
     public String[] mexicanWave(String str) {
         // Your code here!
-        return new String[] {};
+        if(str!=null){
+            // get the length of the string without spaces
+        int lenwos = str.replaceAll("\\s","").length();
+       
+        // the final answer
+        String[] out = new String[lenwos];
+       
+        // the counter to populate to
+        int j=0;
+       
+        // while looping through the input string
+        for (int i=0; i<str.length(); i++) {
+            // if we detect a space, just increment our character counter
+            while (Character.toString(str.charAt(i)).equals(" ")) {
+                // return if about to be out of bounds
+                if ((i+1)>=str.length()) return out;
+                i++;
+            }
+           
+            // create our new string
+            StringBuilder sb = new StringBuilder(str);
+            // uppercase the correct character
+            sb.setCharAt(i, Character.toUpperCase(str.charAt(i)));
+            // convert to string
+            out[j] = sb.toString();
+            // increment the answer counter
+            j++;
+        }
+    
+        return out;
+    }
+     
+
     }
 }
